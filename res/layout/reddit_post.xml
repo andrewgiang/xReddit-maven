@@ -18,8 +18,8 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
              android:paddingLeft="@dimen/activity_horizontal_margin"
              android:paddingRight="@dimen/activity_horizontal_margin"
              android:paddingTop="@dimen/activity_vertical_margin"
@@ -66,15 +66,14 @@
                 android:layout_marginBottom="10dp"
                 android:clickable="true"/>
 
-        <LinearLayout
+        <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal">
 
             <RelativeLayout
                     android:id="@+id/comments_btn"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:clickable="true"
                     android:background="@drawable/abc_list_selector_holo_light">
@@ -106,28 +105,31 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:layout_marginBottom="8dp"/>
 
+
             </RelativeLayout>
-
-            <ImageButton
-                    android:id="@+id/imageButton_up_vote"
-                    android:src="@drawable/ic_action_arrow_top"
-                    style="@style/post_img_buttons"/>
-
-            <ImageButton
-                    style="@style/post_img_buttons"
-                    android:id="@+id/imageButton_down_vote"
-                    android:src="@drawable/ic_action_arrow_bottom"/>
-
-            <ImageButton
-                    style="@style/post_img_buttons"
-                    android:id="@+id/imageButton_star"
-                    android:src="@drawable/ic_action_star_10"/>
-
             <ImageButton
                     style="@style/post_img_buttons"
                     android:id="@+id/imageButton_overflow"
-                    android:src="@drawable/ic_action_overflow"/>
-        </LinearLayout>
+                    android:src="@drawable/ic_action_overflow"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"/>
+            <ImageButton
+                    style="@style/post_img_buttons"
+                    android:id="@+id/imageButton_star"
+                    android:src="@drawable/ic_action_star_10"
+                    android:layout_toLeftOf="@+id/imageButton_overflow"/>
+            <ImageButton
+                    style="@style/post_img_buttons"
+                    android:id="@+id/imageButton_down_vote"
+                    android:src="@drawable/ic_action_arrow_bottom"
+                    android:layout_toLeftOf="@id/imageButton_star"/>
+            <ImageButton
+                    android:id="@+id/imageButton_up_vote"
+                    android:src="@drawable/ic_action_arrow_top"
+                    style="@style/post_img_buttons"
+                    android:layout_toLeftOf="@id/imageButton_down_vote"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
