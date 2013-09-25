@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><!-- File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2011 The Android Open Source Project
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <style name="Theme.Xreddittheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarItemBackground">@drawable/selectable_background_xreddittheme</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Xreddittheme</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Xreddittheme</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Xreddittheme</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Xreddittheme</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Xreddittheme</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_xreddittheme</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_xreddittheme</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Xreddittheme</item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="actionBarWidgetTheme">@style/Theme.Xreddittheme.Widget</item>
+
+    </style>
+
+    <style name="ActionBar.Solid.Xreddittheme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/ab_solid_xreddittheme</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_xreddittheme</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_xreddittheme</item>
+        <item name="progressBarStyle">@style/ProgressBar.Xreddittheme</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Xreddittheme" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/ab_transparent_xreddittheme</item>
+        <item name="progressBarStyle">@style/ProgressBar.Xreddittheme</item>
+    </style>
+
+    <style name="PopupMenu.Xreddittheme" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_xreddittheme</item>
+    </style>
+
+    <style name="DropDownListView.Xreddittheme" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_xreddittheme</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Xreddittheme" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_xreddittheme</item>
+    </style>
+
+    <style name="DropDownNav.Xreddittheme" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_xreddittheme</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_xreddittheme</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_xreddittheme</item>
+    </style>
+
+    <style name="ProgressBar.Xreddittheme" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_xreddittheme</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Xreddittheme" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_xreddittheme</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Xreddittheme.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Xreddittheme</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Xreddittheme</item>
+    </style>
+
+</resources>
