@@ -2,6 +2,9 @@ package com.andrew.giang.xreddit.common;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+
+import com.andrew.giang.xreddit.thing.Post;
 
 import java.util.regex.Pattern;
 
@@ -21,4 +24,24 @@ public class Util {
     }
 
 
+    /*
+            part of this method was taken from RedReader
+         */
+    public static String getThumbnail(final Post post) {
+        boolean hasThumbnail = post.thumbnail != null
+                && post.thumbnail.length() != 0
+                && !post.thumbnail.equalsIgnoreCase("nsfw")
+                && !post.thumbnail.equalsIgnoreCase("self")
+                && !post.thumbnail.equalsIgnoreCase("default");
+        if (hasThumbnail) {
+            return post.thumbnail;
+        }
+        return "http://i.imgur.com/pm6IKFb.png";
+    }
+
+    public static int dpToPx(int dp, Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
+    }
 }

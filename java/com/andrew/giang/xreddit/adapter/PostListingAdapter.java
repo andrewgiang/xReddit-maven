@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.andrew.giang.xreddit.R;
 import com.andrew.giang.xreddit.activity.ImageViewActivity;
 import com.andrew.giang.xreddit.common.BetterSSB;
@@ -27,16 +28,19 @@ import com.andrew.giang.xreddit.network.GsonRequest;
 import com.andrew.giang.xreddit.network.RequestManager;
 import com.andrew.giang.xreddit.thing.Post;
 import com.andrew.giang.xreddit.thing.Thing;
+import com.andrew.giang.xreddit.ui.ThumbnailView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.laurencedawson.activetextview.ActiveTextView;
-import in.uncod.android.bypass.Bypass;
+
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import in.uncod.android.bypass.Bypass;
 
 /**
  * Created by andrew on 8/28/13.
@@ -185,6 +189,7 @@ public class PostListingAdapter extends BaseAdapter {
             });
         } else {
             if (post.is_self) {
+                holder.networkImageView.setVisibility(View.GONE);
                 if (post.selftext_html != null) {
                     String source = post.selftext;
                     if (!TextUtils.isEmpty(source)) {
@@ -214,15 +219,15 @@ public class PostListingAdapter extends BaseAdapter {
                         textView.setText(spannedText);
                         textView.setMovementMethod(LinkMovementMethod.getInstance());
                         holder.card.addView(textView, 1);
-                        holder.networkImageView.setVisibility(View.GONE);
 
 
                     }
 
                 }
             } else {
-
-                ((NetworkImageView) holder.networkImageView).setImageUrl(getThumbnail(post), mImageLoader);
+                ThumbnailView view = new ThumbnailView(mContext, post);
+                holder.card.addView(view, 1);
+                //holder.networkImageView.setVisibility(View.GONE);
 
             }
         }
@@ -241,18 +246,4 @@ public class PostListingAdapter extends BaseAdapter {
 
     }
 
-    /*
-        part of this method was taken from RedReader
-     */
-    private static String getThumbnail(final Post post) {
-        boolean hasThumbnail = post.thumbnail != null
-                && post.thumbnail.length() != 0
-                && !post.thumbnail.equalsIgnoreCase("nsfw")
-                && !post.thumbnail.equalsIgnoreCase("self")
-                && !post.thumbnail.equalsIgnoreCase("default");
-        if (hasThumbnail) {
-            return post.thumbnail;
-        }
-        return "";
-    }
 }
