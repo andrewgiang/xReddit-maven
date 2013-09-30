@@ -16,9 +16,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.andrew.giang.xreddit.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class ImageFragment extends Fragment {
@@ -30,6 +32,7 @@ public class ImageFragment extends Fragment {
     private Toast mCurrentToast;
     private RectF mAttacherDisplayRect;
     private ActionBarActivity activity;
+    private boolean isAttacherDisposed = false;
 
     public ImageFragment() {
 
@@ -57,6 +60,7 @@ public class ImageFragment extends Fragment {
 
 
             // The MAGIC happens here!
+            isAttacherDisposed = false;
             mAttacher = new PhotoViewAttacher(mImageView);
             mAttacher.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
@@ -64,8 +68,10 @@ public class ImageFragment extends Fragment {
             Picasso.with(getActivity()).load(image_url).noFade().into(mImageView, new Callback() {
                 @Override
                 public void onSuccess() {
-                    mAttacher.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                    root.findViewById(R.id.progress).setVisibility(View.GONE);
+                    if (!isAttacherDisposed) {
+                        mAttacher.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        root.findViewById(R.id.progress).setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
@@ -92,6 +98,7 @@ public class ImageFragment extends Fragment {
         super.onDestroy();
 
         // Need to call clean-up
+        isAttacherDisposed = true;
         mAttacher.cleanup();
     }
 

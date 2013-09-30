@@ -2,7 +2,7 @@ package com.andrew.giang.xreddit.common;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import com.andrew.giang.xreddit.thing.Post;
 
@@ -39,9 +39,7 @@ public class Util {
         return "http://i.imgur.com/pm6IKFb.png";
     }
 
-    public static int dpToPx(int dp, Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-        return px;
+    public static int dpToPixels(final Context context, final float dp) {
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics()));
     }
 }

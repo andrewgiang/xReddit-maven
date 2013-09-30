@@ -50,20 +50,10 @@ public class PostListingAdapter extends BaseAdapter {
     private final GsonRequest<Thing> thingGsonRequest;
     private final RequestManager requestManager;
     private final FragmentManager mFragmentManager;
-    private List<Post> mPostList;
     private final Context mContext;
     private final ImageLoader mImageLoader;
     private final String url;
-
-    static class ViewHolder {
-        LinearLayout card;
-        TextView title;
-        TextView subtitle;
-        TextView points;
-        TextView comments;
-        ImageView networkImageView;
-
-    }
+    private List<Post> mPostList;
 
     public PostListingAdapter(Context context, String url, FragmentManager fragmentManager) {
         this.mFragmentManager = fragmentManager;
@@ -191,7 +181,13 @@ public class PostListingAdapter extends BaseAdapter {
             if (post.is_self) {
                 holder.networkImageView.setVisibility(View.GONE);
                 if (post.selftext_html != null) {
-                    String source = post.selftext;
+                    String source;
+                    if (post.selftext.length() > 200) {
+                        source = post.selftext.substring(0, 200) + " ...";
+                    } else {
+                        source = post.selftext;
+                    }
+
                     if (!TextUtils.isEmpty(source)) {
                         Bypass bypass = new Bypass();
 
@@ -218,6 +214,7 @@ public class PostListingAdapter extends BaseAdapter {
                         }
                         textView.setText(spannedText);
                         textView.setMovementMethod(LinkMovementMethod.getInstance());
+                        textView.setMinimumHeight(Util.dpToPixels(mContext, 160));
                         holder.card.addView(textView, 1);
 
 
@@ -227,7 +224,7 @@ public class PostListingAdapter extends BaseAdapter {
             } else {
                 ThumbnailView view = new ThumbnailView(mContext, post);
                 holder.card.addView(view, 1);
-                //holder.networkImageView.setVisibility(View.GONE);
+                holder.networkImageView.setVisibility(View.GONE);
 
             }
         }
@@ -243,6 +240,16 @@ public class PostListingAdapter extends BaseAdapter {
             requestManager.makeRequest(request);
         }
         return convertView;
+
+    }
+
+    static class ViewHolder {
+        LinearLayout card;
+        TextView title;
+        TextView subtitle;
+        TextView points;
+        TextView comments;
+        ImageView networkImageView;
 
     }
 

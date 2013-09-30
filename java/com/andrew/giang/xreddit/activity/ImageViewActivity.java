@@ -3,18 +3,13 @@ package com.andrew.giang.xreddit.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
+
 import com.andrew.giang.xreddit.R;
 import com.andrew.giang.xreddit.fragments.ImageFragment;
 
 public class ImageViewActivity extends ActionBarActivity {
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
