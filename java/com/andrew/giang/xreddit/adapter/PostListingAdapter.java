@@ -28,7 +28,6 @@ import com.andrew.giang.xreddit.network.GsonRequest;
 import com.andrew.giang.xreddit.network.RequestManager;
 import com.andrew.giang.xreddit.thing.Post;
 import com.andrew.giang.xreddit.thing.Thing;
-import com.andrew.giang.xreddit.ui.ThumbnailView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -222,7 +221,16 @@ public class PostListingAdapter extends BaseAdapter {
 
                 }
             } else {
-                ThumbnailView view = new ThumbnailView(mContext, post);
+
+                final View view = LayoutInflater.from(mContext).inflate(R.layout.thumbnail_view, parent, false);
+                final TextView tvDomain = (TextView) view.findViewById(R.id.tv_domain);
+                final TextView tvUrl = (TextView) view.findViewById(R.id.tv_url);
+                final NetworkImageView thumbnailImageView = (NetworkImageView) view.findViewById(R.id.imageViewThumbnail);
+
+                tvDomain.setText(post.domain);
+                tvUrl.setText(post.url);
+                thumbnailImageView.setImageUrl(Util.getThumbnail(post),
+                        mImageLoader);
                 holder.card.addView(view, 1);
                 holder.networkImageView.setVisibility(View.GONE);
 
@@ -242,6 +250,7 @@ public class PostListingAdapter extends BaseAdapter {
         return convertView;
 
     }
+
 
     static class ViewHolder {
         LinearLayout card;
