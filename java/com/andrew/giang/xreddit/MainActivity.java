@@ -29,13 +29,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.andrew.giang.xreddit.adapter.NavigationAdapter;
+import com.andrew.giang.xreddit.fragments.CasualDialogFragment;
 import com.andrew.giang.xreddit.fragments.LoginDialogFragment;
 import com.andrew.giang.xreddit.fragments.SubredditListFragment;
 import com.andrew.giang.xreddit.network.LoginRequest;
 import com.andrew.giang.xreddit.network.RequestManager;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+
 import org.json.JSONObject;
 
 
@@ -76,6 +79,10 @@ public class MainActivity extends ActionBarActivity implements LoginDialogFragme
                             SubredditListFragment.getInstance(null, "")).commit();
                     break;
                 case ALL:
+                    break;
+                case CASUAL:
+                    CasualDialogFragment dialogFragment = new CasualDialogFragment();
+                    dialogFragment.show(fragmentManager, "fragment_casual");
                     break;
                 case MULTI_REDDIT:
                     break;
@@ -151,6 +158,7 @@ public class MainActivity extends ActionBarActivity implements LoginDialogFragme
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
