@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andrew.giang.xreddit.R;
 import com.andrew.giang.xreddit.activity.ImageViewActivity;
@@ -89,7 +90,8 @@ public class PostListingAdapter extends BaseAdapter {
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.w(PostListingAdapter.class.getName(), volleyError.getMessage());
+
+                Toast.makeText(mContext, "Unable to process request", Toast.LENGTH_SHORT).show();
             }
         }
         );
@@ -181,8 +183,8 @@ public class PostListingAdapter extends BaseAdapter {
                 holder.networkImageView.setVisibility(View.GONE);
                 if (post.selftext_html != null) {
                     String source;
-                    if (post.selftext.length() > 200) {
-                        source = post.selftext.substring(0, 200) + " ...";
+                    if (post.selftext.length() > 250) {
+                        source = post.selftext.substring(0, 250) + " ...";
                     } else {
                         source = post.selftext;
                     }
